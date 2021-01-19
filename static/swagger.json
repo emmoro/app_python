@@ -1,0 +1,259 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "description": "Clientes",
+    "version": "1.0.0",
+    "title": "APP de Cliente em Python",
+    "contact": {
+      "email": "teste@gmail.com"
+    },
+    "license": {
+      "name": "elton_moro",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Cliente Request",
+      "description": "Exemplo de API request and retorno do Cliente requests"
+    }
+  ],
+  "paths": {
+    "/clientes": {
+      "get": {
+        "tags": [
+          "Cliente Request"
+        ],
+        "summary": "Retorno de Clientes",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/components/schemas/clienteRequests"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Cliente Request"
+        ],
+
+        "summary": "Criar um novo Cliente",
+        "requestBody": {
+          "description": "Cliente a ser criado",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/clienteRequestPostBody"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/components/schemas/id"
+            }
+          },
+          "400": {
+            "description": "Falhou. Tente novamente."
+          }
+        }
+      }
+    },
+    "/clientes/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "Id não encontrado",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Cliente Request"
+        ],
+        "summary": "Busca Cliente por ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "Cliente Request id",
+            "schema": {
+              "$ref": "#/components/schemas/id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/components/schemas/clienteRequest"
+            }
+          },
+          "400": {
+            "description": "Falhou. Tente novamente."
+          },
+          "404": {
+            "description": "Falhou. Cliente não encontrado"
+          }
+        }
+      },
+      "put": {
+        "summary": "Alterar um Cliente",
+        "tags": [
+          "Cliente Request"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "Cliente Request id",
+            "schema": {
+              "$ref": "#/components/schemas/id"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Cliente Request Object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/clienteRequest"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/components/schemas/clienteRequest"
+            }
+          },
+          "400": {
+            "description": "Falhou. Tente novamente."
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletar Cliente via ID",
+        "tags": [
+          "Cliente Request"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "Cliente Request Id",
+            "schema": {
+              "$ref": "#/components/schemas/id"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/components/schemas/id"
+            }
+          },
+          "400": {
+            "description": "Falhou. Tentar novamente!."
+          },
+          "404": {
+            "description": "Falhou. Cliente não encontrado."
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "id": {
+        "properties": {
+          "id": {
+            "type": "number"
+          }
+        }
+      },
+      "clienteRequestPostBody": {
+        "type": "object",
+        "properties": {
+          "nome": {
+            "type": "string",
+            "format": "string"
+          },
+          "cpf": {
+            "type": "string",
+            "format": "string"
+          },
+          "salario": {
+            "type": "number",
+            "format": "number"
+          },
+         "ativo": {
+            "type": "Boolean",
+            "format": "Boolean"
+          }
+        }
+      },
+      "clienteRequest": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "format": "number"
+          },
+          "nome": {
+            "type": "string",
+            "format": "string"
+          },
+          "cpf": {
+            "type": "string",
+            "format": "string"
+          },
+          "salario": {
+            "type": "number",
+            "format": "number"
+          },
+          "ativo": {
+            "type": "Boolean",
+            "format": "Boolean"
+          }
+        }
+      },
+      "clienteRequests": {
+        "type": "object",
+        "properties": {
+          "clienteRequest": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/clienteRequest"
+            }
+          }
+        }
+      }
+    }
+  }
+}

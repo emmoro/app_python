@@ -1,0 +1,8 @@
+create table cliente(
+    id int not null auto_increment,
+    nome varchar(100) not null,
+    cpf varchar(100) not null,
+    salario double(10,2),
+    ativo boolean,
+    primary key(id)
+);
