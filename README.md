@@ -12,4 +12,4 @@ IDE utilizada foi PyCharm Community
 ## Nota
 * Para utilizar a aplicação, basta conectar ao um banco MySQL
 * Endereço para utilizar a aplicação 'http://127.0.0.1:5000/'
-* Endereço para utilizar o Swagger 'http://127.0.0.1:5000/swagger/
+* Endereço para utilizar o Swagger 'http://127.0.0.1:5000/swagger/'
